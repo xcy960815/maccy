@@ -6,16 +6,16 @@
     <description>Most recent changes with links to updates.</description>
     <language>en</language>
     <item>
-      <title>0.0.4</title>
+      <title>0.0.5</title>
       <description><![CDATA[<p>See the release notes for details.</p>]]></description>
-      <pubDate>Wed, 15 Apr 2026 16:56:31 GMT</pubDate>
-      <releaseNotesLink>https://github.com/xcy960815/Clipbook/releases/tag/v0.0.4</releaseNotesLink>
+      <pubDate>Fri, 17 Apr 2026 01:29:49 GMT</pubDate>
+      <releaseNotesLink>https://github.com/xcy960815/Clipbook/releases/tag/v0.0.5</releaseNotesLink>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
       <enclosure
-        url="https://github.com/xcy960815/Clipbook/releases/download/v0.0.4/Clipbook-v0.0.4-unsigned.app.zip"
-        sparkle:version="4"
-        sparkle:shortVersionString="0.0.4"
-        length="3598302"
+        url="https://github.com/xcy960815/Clipbook/releases/download/v0.0.5/Clipbook-v0.0.5-unsigned.app.zip"
+        sparkle:version="5"
+        sparkle:shortVersionString="0.0.5"
+        length="3605138"
         type="application/octet-stream"
       />
     </item>
