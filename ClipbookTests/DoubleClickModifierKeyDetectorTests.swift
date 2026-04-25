@@ -1,8 +1,18 @@
 import AppKit
+import Defaults
 import XCTest
 @testable import Clipbook
 
 class DoubleClickModifierKeyDetectorTests: XCTestCase {
+  let savedDoubleClickPopupEnabled = Defaults[.doubleClickPopupEnabled]
+  let savedDoubleClickModifierKey = Defaults[.doubleClickModifierKey]
+
+  override func tearDown() {
+    super.tearDown()
+    Defaults[.doubleClickPopupEnabled] = savedDoubleClickPopupEnabled
+    Defaults[.doubleClickModifierKey] = savedDoubleClickModifierKey
+  }
+
   func testDoubleOptionTapTriggersOption() {
     var detector = DoubleClickModifierKeyDetector()
 
@@ -125,5 +135,20 @@ class DoubleClickModifierKeyDetectorTests: XCTestCase {
       ),
       .doubleClick
     )
+  }
+
+  func testDoubleClickOpenModifierDoesNotChangeSelectionAction() {
+    Defaults[.doubleClickPopupEnabled] = true
+    Defaults[.doubleClickModifierKey] = .option
+
+    XCTAssertEqual(History.selectionModifierFlags(from: .option), [])
+    XCTAssertEqual(History.selectionModifierFlags(from: [.option, .shift]), [.option, .shift])
+  }
+
+  func testDoubleClickOpenModifierOnlyIgnoredWhenEnabled() {
+    Defaults[.doubleClickPopupEnabled] = false
+    Defaults[.doubleClickModifierKey] = .option
+
+    XCTAssertEqual(History.selectionModifierFlags(from: .option), .option)
   }
 }

@@ -291,9 +291,22 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
   }
 
   private func currentModifierFlags() -> NSEvent.ModifierFlags {
-    return NSApp.currentEvent?.modifierFlags
+    let modifierFlags = NSApp.currentEvent?.modifierFlags
       .intersection(.deviceIndependentFlagsMask)
       .subtracting([.capsLock, .numericPad, .function]) ?? []
+
+    return Self.selectionModifierFlags(from: modifierFlags)
+  }
+
+  static func selectionModifierFlags(from modifierFlags: NSEvent.ModifierFlags) -> NSEvent.ModifierFlags {
+    guard Defaults[.doubleClickPopupEnabled],
+          Defaults[.doubleClickModifierKey] != .none,
+          DoubleClickModifierKey.standaloneKey(for: modifierFlags) == Defaults[.doubleClickModifierKey]
+    else {
+      return modifierFlags
+    }
+
+    return []
   }
 
   @MainActor
